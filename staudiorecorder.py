@@ -51,12 +51,10 @@ if len(audio) > 0:
 # Use soundfile, pydub, or wave to handle audio file I/O
 
    # Transcribe the audio using OpenAI API将录音文件转文本
-
-#    stt_audio_file = open("audiorecorded.mp3", "rb")
-    model = whisper.load_model("base")
-    transcript = model.transcribe("audiorecorded.mp3")
-    
-#    transcript = openai.Audio.transcribe("whisper-1", stt_audio_file)
+    stt_audio_file = open("audiorecorded.mp3", "rb")
+#    model = whisper.load_model("base")
+#    transcript = model.transcribe("audiorecorded.mp3")  
+    transcript = openai.Audio.transcribe("whisper-1", stt_audio_file)
 #    text = transcript["text"]
 # Remove the temporary audio file
     os.remove("audiorecorded.mp3")    
