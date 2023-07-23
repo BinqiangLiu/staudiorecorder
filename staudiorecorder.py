@@ -8,7 +8,7 @@ from audiorecorder import audiorecorder
 import subprocess
 import openai
 import pyttsx3
-import whisper 
+#import whisper 
 import sounddevice as sd
 import soundfile as sf
 import numpy as np
