@@ -17,7 +17,9 @@ import numpy as np
 import ffmpeg
 import av
 from pydub import AudioSegment
-import PyAudio
+import pyaudio
+import wave
+import sys
 
 # Load environment variables
 from dotenv import load_dotenv
