@@ -1,0 +1,6 @@
+openai
+pyttsx3
+python-dotenv
+streamlit
+numpy
+streamlit-audiorecorder
