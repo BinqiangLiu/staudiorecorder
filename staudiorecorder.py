@@ -85,7 +85,8 @@ if len(audio) > 0:
 # Function to convert text to speech using pyttsx3
     engine = pyttsx3.init()
     engine.setProperty("rate", 150)
-    engine.setProperty("voice", "english-us")
+#    engine.setProperty("voice", "english-us")
+    engine.setProperty("voice", "zh-CN")
     engine.save_to_file(system_message, "response.mp3")
     engine.runAndWait()
 # response audio output section
