@@ -11,7 +11,7 @@ import pyttsx3
 #import whisper 
 import soundfile as sf
 import sounddevice as sd
-from scipy.io.wavfile import write
+#from scipy.io.wavfile import write
 import numpy as np
 #from audio_recorder_streamlit import audio_recorder
 #运行的时候有报错sh:1: ffmpeg not found
