@@ -56,8 +56,8 @@ if len(audio) > 0:
     transcript = openai.Audio.transcribe("whisper-1", stt_audio_file)
 #    text = transcript["text"]
 # Remove the temporary audio file
-#    os.remove("audiorecorded.mp3")    
-    os.remove(stt_audio_file)    
+    os.remove("audiorecorded.mp3")    
+#    os.remove(stt_audio_file)    
 
     # Print the transcript
     print("Transcript:",  transcript["text"])
