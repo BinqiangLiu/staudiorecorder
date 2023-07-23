@@ -9,7 +9,7 @@ import subprocess
 import openai
 import pyttsx3
 #import whisper 
-#import sounddevice as sd
+import sounddevice as sd
 import soundfile as sf
 import numpy as np
 #from audio_recorder_streamlit import audio_recorder
