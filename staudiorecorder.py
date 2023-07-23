@@ -8,7 +8,7 @@ from audiorecorder import audiorecorder
 import subprocess
 import openai
 import pyttsx3
-#import whisper 
+import whisper 
 import sounddevice as sd
 import soundfile as sf
 import numpy as np
@@ -53,7 +53,7 @@ if len(audio) > 0:
    # Transcribe the audio using OpenAI API将录音文件转文本
 
     stt_audio_file = open("audiorecorded.mp3", "rb")
-    transcript = openai.Audio.transcribe("whisper-1", "audiorecorded.mp3")
+    transcript = openai.Audio.transcribe("whisper-1", stt_audio_file.name)
 #    text = transcript["text"]
 # Remove the temporary audio file
     os.remove("audiorecorded.mp3")    
