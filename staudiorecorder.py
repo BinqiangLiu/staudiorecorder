@@ -1,9 +1,14 @@
+#pip install -U openai-whisper
+#pip install git+https://github.com/openai/whisper.git 
+#https://github.com/openai/whisper
+
 #使用这个录音模块：https://github.com/theevann/streamlit-audiorecorder
 import streamlit as st
 from audiorecorder import audiorecorder
 #import subprocess
 import openai
 import pyttsx3
+#import whisper 
 #import sounddevice as sd
 #import soundfile as sf
 #import numpy as np
@@ -34,30 +39,51 @@ if len(audio) > 0:
     # To play audio in frontend:
     st.audio(audio.tobytes())
     
-    # To save audio to a file:
-    audio_file = open("audio.mp3", "wb")
+    # To save audio to a file:/可以视为是临时文件，就是用于语音转文本用
+#Open file "audio.mp3" in binary write mode
+    audio_file = open("audiorecorded.mp3", "wb")
     audio_file.write(audio.tobytes())
+    audio_file.close()
 
-# Transcribe the audio using OpenAI API将录音文件转文本
-with open(audio_file, "rb") as file:
-    transcript = openai.Audio.transcribe("whisper-1", file)
-    text = transcript["text"]    
+# Use soundfile, pydub, or wave to handle audio file I/O
+
+   # Transcribe the audio using OpenAI API将录音文件转文本
+
+    stt_audio_file = open("audiorecorded.mp3", "rb")
+    transcript = openai.Audio.transcribe("whisper-1", stt_audio_file)
+#    text = transcript["text"]
 # Remove the temporary audio file
-#    os.remove(audio_file)    
+    os.remove("audiorecorded.mp3")    
 
-# Function to perform chat with OpenAI GPT-3
-def chat_with_openai(input_text):
+    # Print the transcript
+    print("Transcript:",  transcript["text"])
+
+
+#   ChatGPT API
+#   append user's inut to conversation
+    conversation.append({"role": "user", "content": transcript["text"]})
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": input_text}],
-    )
-    return response["choices"][0]["message"]["content"]
+    model="gpt-3.5-turbo",
+    messages=conversation
+    )    
+    print(response)
+# Display the chat history
+    st.header("Chat History")
+    st.write("You: " + transcript["text"])
+    st.write("AI: " + response)
+
+
+#   system_message is the response from ChatGPT API
+    system_message = response["choices"][0]["message"]["content"]
+
+#   append ChatGPT response (assistant role) back to conversation
+    conversation.append({"role": "assistant", "content": system_message})
 
 # Function to convert text to speech using pyttsx3
 def text_to_speech(text):
     engine = pyttsx3.init()
     engine.setProperty("rate", 150)
-    engine.setProperty("voice", "english-us")
+#    engine.setProperty("voice", "english-us")
     engine.save_to_file(text, "response.mp3")
     engine.runAndWait()
     with open("response.mp3", "rb") as file:
@@ -65,14 +91,9 @@ def text_to_speech(text):
     os.remove("response.mp3")  # Remove the temporary audio file
     return response_audio
 
-response = chat_with_openai(text)
+#response = chat_with_openai(transcript["text"])
 
-# Display the chat history and play response audio
-st.header("Chat History")
-st.write("You: " + text)
-st.write("AI: " + response)
-
-# Audio output section
+# response audio output section
 st.header("Step 2: Listen to the AI Response")
 st.audio(text_to_speech(response), format="audio/mp3", start_time=0)
 
