@@ -28,9 +28,9 @@ load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Global variable to hold the chat history, initialize with system role
-conversation = [{"role": "system", "content": "You are an intelligent professor."}]
+conversation = [{"role": "system", "content": "You are a helpful assistant."}]
 
-st.title("Audio to Chat App")
+st.title("AI Audio Chat App")
 
 # Audio input section语音输入部分
 st.header("Step 1: Speak to the AI")
@@ -56,11 +56,11 @@ if len(audio) > 0:
     transcript = openai.Audio.transcribe("whisper-1", stt_audio_file)
 #    text = transcript["text"]
 # Remove the temporary audio file
-    os.remove("audiorecorded.mp3")    
+#    os.remove("audiorecorded.mp3")    
+    os.remove(stt_audio_file)    
 
     # Print the transcript
     print("Transcript:",  transcript["text"])
-
 
 #   ChatGPT API
 #   append user's inut to conversation
