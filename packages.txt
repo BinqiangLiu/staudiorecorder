@@ -1,0 +1,12 @@
+build-essential
+espeak
+libasound-dev
+libportaudio2
+libespeak-dev
+libespeak-ng1
+libportaudio2
+libportaudiocpp0
+portaudio19-dev
+python3-all-dev
+python3-pyaudio
+ffmpeg
