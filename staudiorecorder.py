@@ -67,17 +67,17 @@ if len(audio) > 0:
     messages=conversation
     )    
     print(response)
-# Display the chat history
-    st.header("Chat History")
-    st.write("You: " + transcript["text"])
-    st.write("AI: " + response)
-
 
 #   system_message is the response from ChatGPT API
     system_message = response["choices"][0]["message"]["content"]
 
 #   append ChatGPT response (assistant role) back to conversation
     conversation.append({"role": "assistant", "content": system_message})
+
+# Display the chat history
+    st.header("Chat History")
+    st.write("You: " + transcript["text"])
+    st.write("AI: " + system_message)
 
 # Function to convert text to speech using pyttsx3
     def text_to_speech(text):
