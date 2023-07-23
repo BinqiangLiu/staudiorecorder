@@ -80,22 +80,22 @@ if len(audio) > 0:
     conversation.append({"role": "assistant", "content": system_message})
 
 # Function to convert text to speech using pyttsx3
-def text_to_speech(text):
-    engine = pyttsx3.init()
-    engine.setProperty("rate", 150)
+    def text_to_speech(text):
+        engine = pyttsx3.init()
+        engine.setProperty("rate", 150)
 #    engine.setProperty("voice", "english-us")
-    engine.save_to_file(text, "response.mp3")
-    engine.runAndWait()
-    with open("response.mp3", "rb") as file:
-        response_audio = file.read()
-    os.remove("response.mp3")  # Remove the temporary audio file
-    return response_audio
+        engine.save_to_file(text, "response.mp3")
+        engine.runAndWait()
+        with open("response.mp3", "rb") as file:
+            response_audio = file.read()
+        os.remove("response.mp3")  # Remove the temporary audio file
+        return response_audio
 
 #response = chat_with_openai(transcript["text"])
 
 # response audio output section
-st.header("Step 2: Listen to the AI Response")
-st.audio(text_to_speech(response), format="audio/mp3", start_time=0)
+    st.header("Step 2: Listen to the AI Response")
+    st.audio(text_to_speech(response), format="audio/mp3", start_time=0)
 
 #if __name__ == "__main__":
 #    main()
