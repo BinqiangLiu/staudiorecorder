@@ -6,7 +6,7 @@ numpy
 streamlit-audiorecorder
 av
 ffmpeg
-pyaudio
+PyAudio
 pydub
 wave
 soundfile
