@@ -4,3 +4,13 @@ python-dotenv
 streamlit
 numpy
 streamlit-audiorecorder
+av
+ffmpeg
+pyaudio
+pydub
+wave
+soundfile
+sounddevice
+numpy
+ffmpeg-python
+python-ffmpeg
