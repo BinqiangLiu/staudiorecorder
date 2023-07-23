@@ -81,18 +81,24 @@ if len(audio) > 0:
     st.header("Chat History")
     st.write("You: " + transcript["text"])
     st.write("AI: " + system_message)
+    
+    try:
+        my_file_name = system_message[0:20]
+    except:
+        my_file_name = "response"
 
 # Function to convert text to speech using pyttsx3
     engine = pyttsx3.init()
     engine.setProperty("rate", 150)
-#    engine.setProperty("voice", "english-us")
+    engine.setProperty("voice", "english-us")
 #    engine.setProperty("voice", "zh-CN")
-    engine.save_to_file(system_message, "response.mp3")
+#    engine.save_to_file(system_message, "response.mp3")
+    engine.save_to_file(system_message, f"{my_file_name}.mp3")
     engine.runAndWait()
 # response audio output section
     st.header("Step 2: Listen to the AI Response")
-    st.audio("response.mp3", format="audio/mp3", start_time=0)
-    os.remove("response.mp3")  # Remove the temporary audio file
+    st.audio(f"{my_file_name}.mp3", format="audio/mp3", start_time=0)
+    os.remove(f"{my_file_name}.mp3")  # Remove the temporary audio file
 
 #response = chat_with_openai(transcript["text"])
 
