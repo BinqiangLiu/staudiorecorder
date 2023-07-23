@@ -91,7 +91,7 @@ if len(audio) > 0:
 # response audio output section
     st.header("Step 2: Listen to the AI Response")
     st.audio("response.mp3", format="audio/mp3", start_time=0)
-#    os.remove("response.mp3")  # Remove the temporary audio file
+    os.remove("response.mp3")  # Remove the temporary audio file
 
 #response = chat_with_openai(transcript["text"])
 
