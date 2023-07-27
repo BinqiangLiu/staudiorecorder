@@ -10,13 +10,13 @@ import openai
 #import pyttsx3
 #import whisper 
 import soundfile as sf
-import sounddevice as sd
+#import sounddevice as sd
 #from scipy.io.wavfile import write
 import numpy as np
 #from audio_recorder_streamlit import audio_recorder
 #运行的时候有报错sh:1: ffmpeg not found
 import ffmpeg
-import av
+#import av
 #from pydub import AudioSegment
 #import pyaudio
 import wave
