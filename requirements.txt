@@ -14,6 +14,6 @@ sounddevice
 numpy
 ffmpeg-python
 python-ffmpeg
-openai-whisper
-git+https://github.com/openai/whisper.git 
+#openai-whisper
+#git+https://github.com/openai/whisper.git 
 scipy
