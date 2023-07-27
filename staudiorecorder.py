@@ -7,7 +7,7 @@ import streamlit as st
 from audiorecorder import audiorecorder
 import subprocess
 import openai
-import pyttsx3
+#import pyttsx3
 #import whisper 
 import soundfile as sf
 import sounddevice as sd
@@ -17,8 +17,8 @@ import numpy as np
 #运行的时候有报错sh:1: ffmpeg not found
 import ffmpeg
 import av
-from pydub import AudioSegment
-import pyaudio
+#from pydub import AudioSegment
+#import pyaudio
 import wave
 import sys
 
@@ -85,14 +85,14 @@ if len(audio) > 0:
     st.write("AI: " + system_message)
 
 # Function to convert text to speech using pyttsx3
-    engine = pyttsx3.init()
-    engine.setProperty("rate", 150)    
-    engine.save_to_file(system_message, "response.mp3")
-    engine.runAndWait()
+#    engine = pyttsx3.init()
+#    engine.setProperty("rate", 150)    
+#    engine.save_to_file(system_message, "response.mp3")
+#    engine.runAndWait()
 # response audio output section
     st.header("Step 2: Listen to the AI Response")
-    st.audio("response.mp3", format="audio/mp3", start_time=0)
-    os.remove("response.mp3")  # Remove the temporary audio file
+#    st.audio("response.mp3", format="audio/mp3", start_time=0)
+#    os.remove("response.mp3")  # Remove the temporary audio file
 
 #response = chat_with_openai(transcript["text"])
 
