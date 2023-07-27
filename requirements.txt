@@ -6,8 +6,8 @@ numpy
 streamlit-audiorecorder
 av
 ffmpeg
-PyAudio
-pydub
+#PyAudio
+#pydub
 wave
 soundfile
 sounddevice
