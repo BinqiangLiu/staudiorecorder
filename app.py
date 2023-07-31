@@ -72,7 +72,7 @@ if len(audio) > 0:
     text = transcript["text"]
 # Remove the temporary audio file
 #    os.remove("audiorecorded.mp3")    
-    os.remove("audiorecorded.wav")   
+    os.remove("audiorecorded.webm")   
 #    os.remove(stt_audio_file)    
 
     # Print the transcript
