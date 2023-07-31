@@ -123,9 +123,9 @@ else:
         st.write("AI Response")
         output_text = text_to_speech(system_message)
         st.write(f" {output_text}")    
-    if click_clear:
-        text = placeholder.text_input(label="第三步：输入需要翻译的内容（请务必先输入要翻译的内容再查看翻译或播放语音）", value="", placeholder='在此输入Enter here', key=2)
-        st.stop()
+#    if click_clear:
+#        text = placeholder.text_input(label="第三步：输入需要翻译的内容（请务必先输入要翻译的内容再查看翻译或播放语音）", value="", placeholder='在此输入Enter here', key=2)
+#        st.stop()
 
     if display_output_text:
         try:
