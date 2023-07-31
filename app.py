@@ -23,6 +23,7 @@ import wave
 import sys
 from langdetect import detect
 from gtts import gTTS
+from pydub import AudioSegment
 
 # Load environment variables
 from dotenv import load_dotenv
@@ -36,6 +37,7 @@ conversation = [{"role": "system", "content": "You are a helpful assistant."}]
 system_message = ""
 transcript = ""
 ai_output_audio = ""
+audio_input = ""
 
 #display_output_text = st.checkbox("语音播放翻译结果")
 
@@ -58,14 +60,22 @@ if len(audio) > 0:
     audio_file = open("audiorecorded.mp3", "wb")
     audio_file.write(audio.tobytes())
     audio_file.close()
+#*****************************************************    
+# Load the MP3 file
+    audio_input = AudioSegment.from_mp3('audiorecorded.mp3')
+# Export the audio as WAV file
+    audio_input.export('audiorecorded.wav', format='wav')
+#*****************************************************
    # Transcribe the audio using OpenAI API将录音文件转文本
-    stt_audio_file = open("audiorecorded.mp3", "rb")
+#    stt_audio_file = open("audiorecorded.mp3", "rb")
+    stt_audio_file = open("audiorecorded.wav", "rb")
 #    model = whisper.load_model("base")
 #    transcript = model.transcribe("audiorecorded.mp3")  
     transcript = openai.Audio.transcribe("whisper-1", stt_audio_file)
     text = transcript["text"]
 # Remove the temporary audio file
-    os.remove("audiorecorded.mp3")    
+#    os.remove("audiorecorded.mp3")    
+    os.remove("audiorecorded.wav")   
 #    os.remove(stt_audio_file)    
 
     # Print the transcript
