@@ -118,11 +118,9 @@ print(language)
 
 def text_to_speech(text):
     try:
-        tts = gTTS(text, language, slow=False)
+        tts = gTTS(text, lang=language, slow=False)
         tts.save("translationresult.mp3")
         return "Success TTS成功将AI回答转换为语音"
-        tts = gTTS(trans_text, lang=output_language, slow=False)
-        tts.save("translationresult.mp3")
     
     except Exception as e:
         # Handle the error, e.g., print an error message or return a default text
