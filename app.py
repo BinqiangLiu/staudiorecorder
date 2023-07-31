@@ -89,7 +89,7 @@ if len(audio) > 0:
 
 #   ChatGPT API
 #   append user's inut to conversation
-    conversation.append({"role": "user", "content": transcript)
+    conversation.append({"role": "user", "content": transcript})
 #    conversation.append({"role": "user", "content": transcript["text"]})
     
     response = openai.ChatCompletion.create(
