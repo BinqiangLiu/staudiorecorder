@@ -31,6 +31,8 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 # Global variable to hold the chat history, initialize with system role
 conversation = [{"role": "system", "content": "You are a helpful assistant."}]
 
+system_message = ""
+
 st.title("by Theevan - AI Audio Chat App")
 
 # Audio input section语音输入部分
@@ -111,6 +113,7 @@ def text_to_speech(text):
         st.stop()
 
 if system_message is None:
+    st.write("Ask your questions first!")    
     st.stop()
 else: 
     if system_message is not None:
@@ -118,10 +121,7 @@ else:
         st.write(transcript)
         st.write("AI Response")
         output_text = text_to_speech(system_message)
-        st.write(f" {output_text}")
-    else:
-        st.write("Ask your questions first!")
-        st.stop()
+        st.write(f" {output_text}")    
     if click_clear:
         text = placeholder.text_input(label="第三步：输入需要翻译的内容（请务必先输入要翻译的内容再查看翻译或播放语音）", value="", placeholder='在此输入Enter here', key=2)
         st.stop()
