@@ -62,13 +62,13 @@ if len(audio) > 0:
     audio_file.write(audio.tobytes())
     audio_file.close()
 
-with open("audiorecorded.webm", "rb") as sst_audio_file:
-    transcript = openai.Audio.transcribe(
-        file = sst_audio_file,
-        model = "whisper-1",
-        response_format="text"        
-    )
-print(transcript)
+    with open("audiorecorded.webm", "rb") as sst_audio_file:
+        transcript = openai.Audio.transcribe(
+            file = sst_audio_file,
+            model = "whisper-1",
+            response_format="text"        
+        )
+    print(transcript)
     
     
    # Transcribe the audio using OpenAI API将录音文件转文本
