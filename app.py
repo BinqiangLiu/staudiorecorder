@@ -89,7 +89,8 @@ if len(audio) > 0:
 
 #   ChatGPT API
 #   append user's inut to conversation
-    conversation.append({"role": "user", "content": transcript["text"]})
+    conversation.append({"role": "user", "content": transcript)
+#    conversation.append({"role": "user", "content": transcript["text"]})
     
     response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
@@ -105,7 +106,8 @@ if len(audio) > 0:
 
 # Display the chat history
     st.header("你和AI的问答文字记录")
-    st.write("你的提问（语音转文字）: " + transcript["text"])
+    st.write("你的提问（语音转文字）: " + transcript)
+#    st.write("你的提问（语音转文字）: " + transcript["text"])
     st.write("AI回答（文字）: " + system_message)
     st.header("第二步：语音播放AI的回答")
 
