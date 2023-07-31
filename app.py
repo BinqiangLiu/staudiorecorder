@@ -22,6 +22,7 @@ import ffmpeg
 import wave
 import sys
 from langdetect import detect
+from gtts import gTTS
 
 # Load environment variables
 from dotenv import load_dotenv
