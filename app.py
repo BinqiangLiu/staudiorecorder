@@ -23,7 +23,7 @@ import wave
 import sys
 from langdetect import detect
 from gtts import gTTS
-from pydub import AudioSegment
+#from pydub import AudioSegment
 
 # Load environment variables
 from dotenv import load_dotenv
@@ -57,18 +57,15 @@ if len(audio) > 0:
     st.audio(audio.tobytes())    
     # To save audio to a file:/可以视为是临时文件，就是用于语音转文本用
 #Open file "audiorecorded.mp3" in binary write mode
-    audio_file = open("audiorecorded.mp3", "wb")
+    audio_file = open("audiorecorded.webm", "wb")    
+#    audio_file = open("audiorecorded.mp3", "wb")
     audio_file.write(audio.tobytes())
     audio_file.close()
-#*****************************************************    
-# Load the MP3 file
-    audio_input = AudioSegment.from_mp3('audiorecorded.mp3')
-# Export the audio as WAV file
-    audio_input.export('audiorecorded.wav', format='wav')
-#*****************************************************
+
+    
    # Transcribe the audio using OpenAI API将录音文件转文本
 #    stt_audio_file = open("audiorecorded.mp3", "rb")
-    stt_audio_file = open("audiorecorded.wav", "rb")
+    stt_audio_file = open("audiorecorded.webm", "rb")
 #    model = whisper.load_model("base")
 #    transcript = model.transcribe("audiorecorded.mp3")  
     transcript = openai.Audio.transcribe("whisper-1", stt_audio_file)
