@@ -1,6 +1,7 @@
 openai
-pyttsx3
+#pyttsx3
 python-dotenv
+langdetect
 streamlit
 numpy
 streamlit-audiorecorder
