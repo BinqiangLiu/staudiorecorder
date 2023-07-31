@@ -62,13 +62,21 @@ if len(audio) > 0:
     audio_file.write(audio.tobytes())
     audio_file.close()
 
+with open("audiorecorded.webm", "rb") as sst_audio_file:
+    transcript = openai.Audio.transcribe(
+        file = sst_audio_file,
+        model = "whisper-1",
+        response_format="text"        
+    )
+print(transcript)
+    
     
    # Transcribe the audio using OpenAI API将录音文件转文本
 #    stt_audio_file = open("audiorecorded.mp3", "rb")
-    stt_audio_file = open("audiorecorded.webm", "rb")
+#    stt_audio_file = open("audiorecorded.webm", "rb")
 #    model = whisper.load_model("base")
 #    transcript = model.transcribe("audiorecorded.mp3")      
-    transcript = openai.Audio.transcribe("whisper-1", stt_audio_file)
+#    transcript = openai.Audio.transcribe("whisper-1", stt_audio_file)
     text = transcript["text"]
 # Remove the temporary audio file
 #    os.remove("audiorecorded.mp3")    
