@@ -97,30 +97,13 @@ language = detect(system_message)
 st.write("检测到输出语言:", language)
 print(language)
 
-def text_to_speech(text):
-    try:
-        tts = gTTS(text, lang=language, slow=False)
-        tts.save("translationresult.mp3")
-        st.write("Success TTS成功将AI回答转换为语音")
-        return "Success TTS成功将AI回答转换为语音"
-    
-    except Exception as e:
-        # Handle the error, e.g., print an error message or return a default text
-        print(f"Translation error: {e}")
-        st.write("TTS RESULT ERROR将AI回答转语音失败！")
-        return "TTS RESULT ERROR将AI回答转语音失败！"
-        st.stop()
+#text = "Hello, how are you?"
+tts = gTTS(system_message)
+#tts = gTTS(system_message, lang=language, slow=False)
+tts.save("output.mp3")
+import pygame
+pygame.mixer.init()
+pygame.mixer.music.load("output.mp3")
+pygame.mixer.music.play()
 
-if system_message is None:
-    st.write("请先向AI提问！")    
-    st.stop()
-else: 
-    st.write("你的提问（AI问答模型中的记录transcript）")
-    st.write(transcript)
-    st.write("AI回答")            
-    ai_output_audio = text_to_speech(system_message)
-    audio_file = open("translationresult.mp3", "rb")
-    audio_bytes = audio_file.read()
-    st.audio("translationresult.mp3")
-    st.write(response)    
-    st.write(system_message)    
+
