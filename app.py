@@ -31,7 +31,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 # Global variable to hold the chat history, initialize with system role
 conversation = [{"role": "system", "content": "You are a helpful assistant."}]
 
-st.title("AI Audio Chat App")
+st.title("by Theevan - AI Audio Chat App")
 
 # Audio input section语音输入部分
 st.header("Step 1: Speak to the AI")
@@ -41,8 +41,7 @@ audio = audiorecorder("点击开始录音", "点击停止录音")
 
 if len(audio) > 0:
     # To play audio in frontend:
-    st.audio(audio.tobytes())
-    
+    st.audio(audio.tobytes())    
     # To save audio to a file:/可以视为是临时文件，就是用于语音转文本用
 #Open file "audiorecorded.mp3" in binary write mode
     audio_file = open("audiorecorded.mp3", "wb")
@@ -56,17 +55,18 @@ if len(audio) > 0:
 #    model = whisper.load_model("base")
 #    transcript = model.transcribe("audiorecorded.mp3")  
     transcript = openai.Audio.transcribe("whisper-1", stt_audio_file)
-#    text = transcript["text"]
+    text = transcript["text"]
 # Remove the temporary audio file
     os.remove("audiorecorded.mp3")    
 #    os.remove(stt_audio_file)    
 
     # Print the transcript
-    print("Transcript:",  transcript["text"])
+    print("Transcript of your questions:",  transcript["text"])
 
 #   ChatGPT API
 #   append user's inut to conversation
     conversation.append({"role": "user", "content": transcript["text"]})
+    
     response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
     messages=conversation
@@ -110,17 +110,17 @@ def text_to_speech(text):
         return "提示：要翻译内容为空"
         st.stop()
 
-if text is None:
+if system_message is None:
     st.stop()
 else: 
-    if text is not None:
-        st.write("【待翻译内容】")
-        st.write(text)
-        st.write("【翻译结果】")
+    if system_message is not None:
+        st.write("Your questions")
+        st.write(transcript)
+        st.write("AI Response")
         output_text = text_to_speech(system_message)
         st.write(f" {output_text}")
     else:
-        st.write("请在上方输入框中输入需要翻译的内容")
+        st.write("Ask your questions first!")
         st.stop()
     if click_clear:
         text = placeholder.text_input(label="第三步：输入需要翻译的内容（请务必先输入要翻译的内容再查看翻译或播放语音）", value="", placeholder='在此输入Enter here', key=2)
