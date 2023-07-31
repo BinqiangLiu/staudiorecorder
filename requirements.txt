@@ -18,5 +18,5 @@ python-ffmpeg
 #openai-whisper
 #git+https://github.com/openai/whisper.git 
 scipy
-pygame
+#pygame
 gTTS
