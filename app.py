@@ -21,6 +21,7 @@ import ffmpeg
 #import pyaudio
 import wave
 import sys
+from langdetect import detect
 
 # Load environment variables
 from dotenv import load_dotenv
@@ -46,7 +47,6 @@ st.write("点击下方按钮开始和停止语音输入")
 
 audio = audiorecorder("点击开始录音", "点击停止录音")
 
-
 if len(audio) > 0:
     # To play audio in frontend:
     st.write("你输入的语音")
@@ -56,9 +56,6 @@ if len(audio) > 0:
     audio_file = open("audiorecorded.mp3", "wb")
     audio_file.write(audio.tobytes())
     audio_file.close()
-
-# Use soundfile, pydub, or wave to handle audio file I/O
-
    # Transcribe the audio using OpenAI API将录音文件转文本
     stt_audio_file = open("audiorecorded.mp3", "rb")
 #    model = whisper.load_model("base")
@@ -92,24 +89,7 @@ if len(audio) > 0:
     st.header("你和AI的问答文字记录")
     st.write("你的提问（语音转文字）: " + transcript["text"])
     st.write("AI回答（文字）: " + system_message)
-
-# Function to convert text to speech using pyttsx3
-#    engine = pyttsx3.init()
-#    engine.setProperty("rate", 150)    
-#    engine.save_to_file(system_message, "response.mp3")
-#    engine.runAndWait()
-# response audio output section
     st.header("第二步：语音播放AI的回答")
-#    st.audio("response.mp3", format="audio/mp3", start_time=0)
-#    os.remove("response.mp3")  # Remove the temporary audio file
-
-#response = chat_with_openai(transcript["text"])
-
-#if __name__ == "__main__":
-#    main()
-#*******************************************************
-
-from langdetect import detect
 
 language = detect(system_message)
 
