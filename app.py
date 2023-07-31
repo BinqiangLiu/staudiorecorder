@@ -84,7 +84,8 @@ if len(audio) > 0:
 #    os.remove(stt_audio_file)    
 
     # Print the transcript
-    print("Transcript of your questions:",  transcript["text"])
+    print("Transcript of your questions:",  transcript)
+#    print("Transcript of your questions:",  transcript["text"])
 
 #   ChatGPT API
 #   append user's inut to conversation
