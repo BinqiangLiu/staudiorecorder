@@ -34,9 +34,9 @@ conversation = [{"role": "system", "content": "You are a helpful assistant."}]
 system_message = ""
 transcript = ""
 
-display_output_text = st.checkbox("语音播放翻译结果")
+#display_output_text = st.checkbox("语音播放翻译结果")
 
-click_clear = st.button('清空输入框', key=3)
+#click_clear = st.button('清空输入框', key=3)
 
 st.title("by Theevan - AI Audio Chat App")
 
