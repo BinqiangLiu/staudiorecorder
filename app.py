@@ -113,7 +113,7 @@ from langdetect import detect
 
 language = detect(system_message)
 
-st.write("检测到输出语言：": language)
+st.write("检测到输出语言:", language)
 print(language)
 
 def text_to_speech(text):
