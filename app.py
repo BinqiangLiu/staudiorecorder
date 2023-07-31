@@ -108,11 +108,22 @@ if len(audio) > 0:
 #if __name__ == "__main__":
 #    main()
 #*******************************************************
+
+from langdetect import detect
+
+language = detect(system_message)
+
+st.write("检测到输出语言：": language)
+print(language)
+
 def text_to_speech(text):
     try:
-        tts = gTTS(text, slow=False)
+        tts = gTTS(text, language, slow=False)
         tts.save("translationresult.mp3")
         return "Success TTS成功将AI回答转换为语音"
+        tts = gTTS(trans_text, lang=output_language, slow=False)
+        tts.save("translationresult.mp3")
+    
     except Exception as e:
         # Handle the error, e.g., print an error message or return a default text
         print(f"Translation error: {e}")
