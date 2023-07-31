@@ -41,13 +41,15 @@ click_clear = st.button('清空输入框', key=3)
 st.title("by Theevan - AI Audio Chat App")
 
 # Audio input section语音输入部分
-st.header("Step 1: Speak to the AI")
-st.write("Click the Record Button below and speak to the AI.")
+st.header("第一步：向AI语音提问")
+st.write("点击下方按钮开始和停止语音输入")
 
 audio = audiorecorder("点击开始录音", "点击停止录音")
 
+
 if len(audio) > 0:
     # To play audio in frontend:
+    st.write("你输入的语音")
     st.audio(audio.tobytes())    
     # To save audio to a file:/可以视为是临时文件，就是用于语音转文本用
 #Open file "audiorecorded.mp3" in binary write mode
@@ -87,9 +89,9 @@ if len(audio) > 0:
     conversation.append({"role": "assistant", "content": system_message})
 
 # Display the chat history
-    st.header("Chat History")
-    st.write("You: " + transcript["text"])
-    st.write("AI: " + system_message)
+    st.header("你和AI的问答文字记录")
+    st.write("你的提问（语音转文字）: " + transcript["text"])
+    st.write("AI回答（文字）: " + system_message)
 
 # Function to convert text to speech using pyttsx3
 #    engine = pyttsx3.init()
@@ -97,7 +99,7 @@ if len(audio) > 0:
 #    engine.save_to_file(system_message, "response.mp3")
 #    engine.runAndWait()
 # response audio output section
-    st.header("Step 2: Listen to the AI Response")
+    st.header("第二步：语音播放AI的回答")
 #    st.audio("response.mp3", format="audio/mp3", start_time=0)
 #    os.remove("response.mp3")  # Remove the temporary audio file
 
@@ -110,36 +112,36 @@ def text_to_speech(text):
     try:
         tts = gTTS(text, slow=False)
         tts.save("translationresult.mp3")
-        return "Success TTS"
+        return "Success TTS成功将AI回答转换为语音"
     except Exception as e:
         # Handle the error, e.g., print an error message or return a default text
         print(f"Translation error: {e}")
-        return "TTS RESULT ERROR"
+        return "TTS RESULT ERROR将AI回答转语音失败！"
         st.stop()
 
 if system_message is None:
-    st.write("Ask your questions first!")    
+    st.write("请先向AI提问！")    
     st.stop()
 else: 
-    if system_message is not None:
-        st.write("Your questions")
-        st.write(transcript)
-        st.write("AI Response")
-        output_text = text_to_speech(system_message)
-        st.audio("translationresult.mp3")
-        st.write(f" {output_text}")    
+    st.write("你的提问（AI问答模型中的记录transcript）")
+    st.write(transcript)
+    st.write("AI回答")
+    ai_output_audio = text_to_speech(system_message)
+    st.audio("translationresult.mp3")
+    st.write(response)    
+    st.write(system_message)    
 #    if click_clear:
 #        text = placeholder.text_input(label="第三步：输入需要翻译的内容（请务必先输入要翻译的内容再查看翻译或播放语音）", value="", placeholder='在此输入Enter here', key=2)
 #        st.stop()
 
-    if display_output_text:
-        try:
-            output_text = text_to_speech(system_message)
-            audio_file = open("translationresult.mp3", "rb")
-            audio_bytes = audio_file.read()
-            st.audio("translationresult.mp3")
-            st.write(f" {output_text}")    
-        except Exception as e:
-            # Handle the error, e.g., print an error message or return a default text
-            print(f"Translation error: {e}")            
-            st.stop()
+#    if display_output_text:
+#        try:
+#            output_text = text_to_speech(system_message)
+#            audio_file = open("translationresult.mp3", "rb")
+#            audio_bytes = audio_file.read()
+#            st.audio("translationresult.mp3")
+#            st.write(f" {output_text}")    
+#        except Exception as e:
+#            # Handle the error, e.g., print an error message or return a default text
+#            print(f"Translation error: {e}")            
+#            st.stop()
