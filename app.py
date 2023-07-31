@@ -32,6 +32,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 conversation = [{"role": "system", "content": "You are a helpful assistant."}]
 
 system_message = ""
+transcript = ""
 
 st.title("by Theevan - AI Audio Chat App")
 
